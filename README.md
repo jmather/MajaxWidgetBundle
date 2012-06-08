@@ -12,6 +12,13 @@ Includes field templates for both regular Symfony2 and Sonata Admin Bundles
 
 ## Installation
 
+### deps
+
+    [MajaxWidgetBundle]
+        git=http://github.com/jmather/MajaxWidgetBundle.git
+        target=/bundles/Majax/WidgetBundle
+
+
 ### Autoloader
 
     $loader->registerNamespaces(array(
@@ -24,8 +31,39 @@ Includes field templates for both regular Symfony2 and Sonata Admin Bundles
 
     new Majax\UserBundle\MajaxWidgetBundle(),
 
+### Finally
+
+    php app/console assets:install web
+
 
 ## Configuration
+
+Configuration revolves around two parts:
+
+* Adding the javascript include (and configuring it for your use)
+* Using the custom templates to add the javascript needed for each field as well
+
+### General Template Configuration
+
+#### Global Configuration
+
+You will have to add the javascript to your template manually
+
+    {% block javascripts %}
+    {{ parent() }}
+            <script src="{{ asset('bundles/majaxwidget/js/jquery.majax.datetimeselector.js') }}" type="text/javascript"></script>
+            <script>$(function() { $.datepicker.setDefaults($.datepicker.regional['']); });</script>
+    {% endblock %}
+
+There is probably a better way to do this -- let me know!
+
+#### SonataAdminBundle Configuration
+
+    sonata_admin:
+        templates:
+            # default global templates
+            layout:  MajaxWidgetBundle:Admin:standard_layout.html.twig
+
 
 ### Symfony2 Configuration
 
@@ -37,7 +75,7 @@ Includes field templates for both regular Symfony2 and Sonata Admin Bundles
 
 ### SonataAdminBundle Configuration
 
-    sonata_admin:
+    sonata_doctrine_orm_admin:
         templates:
-            # default global templates
-            layout:  PFFAdBundle:Admin:standard_layout.html.twig
+            form:
+                - MajaxWidgetBundle:Form:sonata_fields.html.twig

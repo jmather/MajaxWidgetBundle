@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% block javascripts %}
+{{ parent() }}
+        <script src="{{ asset('bundles/majaxwidget/js/jquery.majax.datetimeselector.js') }}" type="text/javascript"></script>
+        <script>$(function() { $.datepicker.setDefaults($.datepicker.regional['']); });</script>
+{% endblock %}
