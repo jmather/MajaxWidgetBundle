@@ -2,6 +2,7 @@
 
 Providing a nice way to interface with date/time widgets
 
+[Example](https://www.dropbox.com/s/47idu9n1hm4o5s5/Admin%20Edit%20__.jpg)
 
 ## Depends on
 
