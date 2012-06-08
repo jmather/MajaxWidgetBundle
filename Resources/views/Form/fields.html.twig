@@ -1,0 +1,26 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block datetime_widget %}
+{{ parent() }}
+<script type="text/javascript">
+    $(function() {
+        $('#{{ form.vars.id }}').majaxdatetimeselector({date_can_be_empty: true, time_can_be_empty: true, seconds: false});
+    });
+</script>
+{% endblock %}
+{% block date_widget %}
+{{ parent() }}
+<script type="text/javascript">
+    $(function() {
+        $('#{{ form.vars.id }}').majaxdatetimeselector({date_can_be_empty: true, display_time: false});
+    });
+</script>
+{% endblock %}
+{% block time_widget %}
+{{ parent() }}
+<script type="text/javascript">
+    $(function() {
+        $('#{{ form.vars.id }}').majaxdatetimeselector({time_can_be_empty: true, display_date: false});
+    });
+</script>
+{% endblock %}
